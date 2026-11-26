@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11182b">
+  <meta name="description" content="Conheça Yuri, sua história, seus gostos e seus sonhos.">
+
+  <title>Yuri | Meu Pequeno Universo</title>
+
+  <style>
+    :root {
+      --bg: #11182b;
+      --surface: #19243a;
+      --surface-light: #22314c;
+      --blue: #b9cefa;
+      --lavender: #d2c8fa;
+      --white: #f5f6ff;
+      --muted: #b0bad0;
+      --border: rgba(185, 206, 250, .16);
+      --width: 1100px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--width));
+      margin-inline: auto;
+    }
+
+    /* NAVEGAÇÃO */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(17, 24, 43, .92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* APRESENTAÇÃO */
+
+    .hero {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+      padding-block: 90px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero p {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: .9rem;
+      font-weight: 600;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: var(--blue);
+      color: #11182b;
+      border-color: var(--blue);
+    }
+
+    .secondary {
+      background: var(--surface);
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .note-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 12px var(--blue);
+    }
+
+    /* CENÁRIO ILUSTRADO */
+
+    .scene {
+      position: relative;
+      height: 460px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: linear-gradient(
+        180deg,
+        #263957 0%,
+        #536b92 55%,
+        #a6b7d1 100%
+      );
+      box-shadow: 0 25px 80px #00000025;
+    }
+
+    .moon {
+      position: absolute;
+      top: 48px;
+      right: 48px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #f4ead5;
+      box-shadow: 0 0 50px #f4ead555;
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 16px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #263957;
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      color: #f5f6ff;
+    }
+
+    .stars span {
+      position: absolute;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
+    .stars span:nth-child(1) {
+      top: 70px;
+      left: 15%;
+    }
+
+    .stars span:nth-child(2) {
+      top: 130px;
+      left: 70%;
+      animation-delay: 1s;
+    }
+
+    .stars span:nth-child(3) {
+      top: 45px;
+      left: 45%;
+      animation-delay: .5s;
+    }
+
+    .stars span:nth-child(4) {
+      top: 160px;
+      left: 25%;
+      animation-delay: 1.5s;
+    }
+
+    .stars span:nth-child(5) {
+      top: 100px;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .mountain {
+      position: absolute;
+      bottom: 100px;
+      width: 0;
+      height: 0;
+      border-left: 180px solid transparent;
+      border-right: 180px solid transparent;
+      border-bottom: 200px solid #425878;
+    }
+
+    .mountain-back {
+      left: -100px;
+      border-bottom-color: #405779;
+    }
+
+    .mountain-front {
+      right: -110px;
+      bottom: 90px;
+      border-bottom-color: #344b6b;
+      transform: scale(1.15);
+    }
+
+    .hill {
+      position: absolute;
+      bottom: -105px;
+      left: -15%;
+      width: 130%;
+      height: 250px;
+      border-radius: 50% 50% 0 0;
+      background: linear-gradient(135deg, #415f7c, #203952);
+    }
+
+    /* PERSONAGEM */
+
+    .boy {
+      position: absolute;
+      z-index: 2;
+      bottom: 55px;
+      left: 50%;
+      width: 170px;
+      height: 265px;
+      transform: translateX(-50%);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .boy-shadow {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      width: 150px;
+      height: 15px;
+      border-radius: 50%;
+      background: #10182755;
+      filter: blur(5px);
+    }
+
+    .boy-head {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 45px;
+      width: 80px;
+      height: 100px;
+    }
+
+    .boy-face {
+      position: absolute;
+      inset: 8px 3px 0;
+      overflow: hidden;
+      border-radius: 44% 44% 48% 48%;
+      background: #edc2a4;
+    }
+
+    .boy-ear {
+      position: absolute;
+      top: 45px;
+      width: 15px;
+      height: 24px;
+      border-radius: 50%;
+      background: #edc2a4;
+    }
+
+    .boy-ear.left {
+      left: -2px;
+    }
+
+    .boy-ear.right {
+      right: -2px;
+    }
+
+    .boy-hair {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 48px;
+      border-radius: 50% 50% 35% 35%;
+      background: #263044;
+    }
+
+    .boy-hair::after {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 3px;
+      width: 74px;
+      height: 25px;
+      border-radius: 50%;
+      background: #263044;
+      clip-path: polygon(
+        0 0, 100% 0, 100% 100%,
+        78% 60%, 63% 100%,
+        45% 60%, 30% 100%,
+        15% 60%, 0 100%
+      );
+    }
+
+    .boy-eyes {
+      position: absolute;
+      top: 45px;
+      left: 17px;
+      display: flex;
+      gap: 22px;
+    }
+
+    .boy-eyes span {
+      width: 5px;
+      height: 7px;
+      border-radius: 50%;
+      background: #493b3b;
+    }
+
+    .boy-blush {
+      position: absolute;
+      top: 58px;
+      width: 12px;
+      height: 7px;
+      border-radius: 50%;
+      background: #df9999;
+      opacity: .5;
+    }
+
+    .boy-blush.left {
+      left: 7px;
+    }
+
+    .boy-blush.right {
+      right: 7px;
+    }
+
+    .boy-smile {
+      position: absolute;
+      top: 65px;
+      left: 30px;
+      width: 15px;
+      height: 7px;
+      border-bottom: 2px solid #a86f65;
+      border-radius: 50%;
+    }
+
+    .boy-neck {
+      position: absolute;
+      top: 88px;
+      left: 72px;
+      width: 28px;
+      height: 25px;
+      background: #edc2a4;
+    }
+
+    .boy-body {
+      position: absolute;
+      top: 100px;
+      left: 35px;
+      width: 100px;
+      height: 100px;
+      border-radius: 35px 35px 15px 15px;
+      background: linear-gradient(135deg, #7797c7, #405e8b);
+    }
+
+    .hood {
+      position: absolute;
+      top: -5px;
+      left: 22px;
+      width: 56px;
+      height: 45px;
+      border: 5px solid #9cb8e3;
+      border-radius: 50% 50% 40% 40%;
+    }
+
+    .hood-string {
+      position: absolute;
+      top: 45px;
+      width: 2px;
+      height: 25px;
+      background: #c5d7f1;
+    }
+
+    .hood-string.left {
+      left: 38px;
+    }
+
+    .hood-string.right {
+      right: 38px;
+    }
+
+    .boy-arm {
+      position: absolute;
+      top: 110px;
+      width: 32px;
+      height: 85px;
+      border-radius: 20px;
+      background: #7797c7;
+    }
+
+    .boy-arm.left {
+      left: 17px;
+      transform: rotate(12deg);
+    }
+
+    .boy-arm.right {
+      right: 17px;
+      transform: rotate(-12deg);
+    }
+
+    .boy-leg {
+      position: absolute;
+      top: 185px;
+      width: 38px;
+      height: 60px;
+      border-radius: 8px 8px 15px 15px;
+      background: #263044;
+    }
+
+    .boy-leg.left {
+      left: 45px;
+    }
+
+    .boy-leg.right {
+      right: 45px;
+    }
+
+    .boy-shoe {
+      position: absolute;
+      bottom: 8px;
+      width: 47px;
+      height: 20px;
+      border-radius: 15px 15px 8px 8px;
+      background: #e8edf7;
+    }
+
+    .boy-shoe.left {
+      left: 35px;
+    }
+
+    .boy-shoe.right {
+      right: 35px;
+    }
+
+    .scene-caption {
+      position: absolute;
+      z-index: 4;
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #e9f0ff;
+      font-size: .75rem;
+      letter-spacing: 1px;
+    }
+
+    /* SEÇÕES */
+
+    .section {
+      padding-block: 100px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .about-text strong {
+      color: var(--white);
+    }
+
+    .info-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+    }
+
+    .info-card h3 {
+      margin-bottom: 20px;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .info-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .info-list strong {
+      display: block;
+      color: var(--white);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #b9cefa66;
+    }
+
+    .card-number {
+      display: block;
+      color: var(--blue);
+      font-size: .78rem;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .quote {
+      padding: 50px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 100% 0%, #293c58, transparent 55%),
+        var(--surface);
+      text-align: center;
+    }
+
+    .quote blockquote {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.4;
+    }
+
+    .quote p {
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .footer strong {
+      color: var(--blue);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-8px);
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: .4;
+        transform: scale(.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, var(--width));
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 12px 20px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding-block: 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .scene {
+        height: 390px;
+      }
+
+      .about-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding-block: 75px;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px;
+      }
+
+      .quote {
+        padding: 30px 22px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container" aria-label="Navegação principal">
+
+      <a class="logo" href="#inicio">Yuri<span>.</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        Menu
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#gostos">Meus gostos</a></li>
+        <li><a href="#sonhos">Meus sonhos</a></li>
+        <li><a href="#mensagem">Mensagem</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero container" id="inicio">
+
+      <div class="hero-content reveal">
+
+        <span class="eyebrow">Meu pequeno universo</span>
+
+        <h1>
+          Oi, eu sou<br>
+          <span>o Yuri.</span>
+        </h1>
+
+        <p>
+          Tenho 14 anos, muitos sonhos e uma história que
+          ainda está sendo escrita. Este é meu cantinho
+          especial, onde compartilho um pouco do meu mundo.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#sobre">
+            Conheça minha história
+          </a>
+
+          <a class="button secondary" href="#gostos">
+            Meu universo
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span class="note-dot"></span>
+          Um dia de cada vez, um sonho de cada vez.
+        </div>
+
+      </div>
+
+      <div class="hero-illustration reveal">
+
+        <div class="scene">
+
+          <div class="moon"></div>
+
+          <div class="stars">
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+          </div>
+
+          <div class="mountain mountain-back"></div>
+          <div class="mountain mountain-front"></div>
+          <div class="hill"></div>
+
+          <div class="boy">
+
+            <div class="boy-shadow"></div>
+
+            <div class="boy-head">
+              <div class="boy-hair"></div>
+              <div class="boy-ear left"></div>
+              <div class="boy-ear right"></div>
+
+              <div class="boy-face">
+                <div class="boy-eyes">
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <div class="boy-blush left"></div>
+                <div class="boy-blush right"></div>
+                <div class="boy-smile"></div>
+              </div>
+            </div>
+
+            <div class="boy-neck"></div>
+
+            <div class="boy-body">
+              <div class="hood"></div>
+              <div class="hood-string left"></div>
+              <div class="hood-string right"></div>
+            </div>
+
+            <div class="boy-arm left"></div>
+            <div class="boy-arm right"></div>
+
+            <div class="boy-leg left"></div>
+            <div class="boy-leg right"></div>
+
+            <div class="boy-shoe left"></div>
+            <div class="boy-shoe right"></div>
+
+          </div>
+
+          <div class="scene-caption">
+            <span>YURI</span>
+            <span>14 anos · Minha história</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="sobre">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">Quem sou eu</span>
+
+          <h2>
+            Um pouco sobre o garoto por trás do nome.
+          </h2>
+
+          <p>
+            Cada dia é uma oportunidade de aprender alguma coisa nova.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-text reveal">
+
+            <p>
+              Meu nome é <strong>Yuri</strong>, tenho 14 anos
+              e estou vivendo uma fase cheia de descobertas,
+              novas experiências e sonhos.
+            </p>
+
+            <p>
+              Sou um garoto que gosta de aproveitar os bons
+              momentos, estar perto de quem é importante para
+              mim e encontrar coisas novas que despertem minha
+              curiosidade.
+            </p>
+
+            <p>
+              Gosto da ideia de criar coisas, explorar a
+              internet e descobrir como funcionam os sites
+              e o mundo digital. Também acredito que aprender
+              algo novo é uma das melhores formas de crescer.
+            </p>
+
+            <p>
+              Ainda tenho muita coisa para descobrir sobre
+              mim mesmo, mas uma coisa eu sei: quero construir
+              uma história da qual possa me orgulhar.
+            </p>
+
+          </div>
+
+          <aside class="info-card reveal">
+
+            <h3>Minha essência</h3>
+
+            <ul class="info-list">
+              <li>
+                <strong>Meu nome</strong>
+                Yuri
+              </li>
+
+              <li>
+                <strong>Minha idade</strong>
+                14 anos
+              </li>
+
+              <li>
+                <strong>Meu estilo</strong>
+                Simples, moderno e autêntico
+              </li>
+
+              <li>
+                <strong>O que me inspira</strong>
+                Meus sonhos e as pessoas que amo
+              </li>
+
+              <li>
+                <strong>Minha fase</strong>
+                Aprendendo e descobrindo o mundo
+              </li>
+            </ul>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="gostos">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">Meu universo</span>
+
+          <h2>
+            Pequenas coisas que fazem parte de mim.
+          </h2>
+
+          <p>
+            Porque uma biografia também é feita dos detalhes
+            que deixam a vida mais interessante.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card reveal">
+            <span class="card-number">01 / MINHA COR</span>
+            <h3>Azul</h3>
+
+            <p>
+              Escolhi o azul para representar meu universo.
+              É uma cor tranquila, bonita e que combina
+              com meu estilo moderno.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">02 / MINHA COMIDA</span>
+            <h3>Chocolate</h3>
+
+            <p>
+              Uma escolha doce para representar aquelas
+              pequenas coisas que deixam qualquer dia
+              mais especial.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">03 / MEU INTERESSE</span>
+            <h3>Tecnologia</h3>
+
+            <p>
+              Gosto da ideia de criar coisas, explorar a
+              internet e descobrir como funcionam os sites
+              e o mundo digital.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="sonhos">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">Meu futuro</span>
+
+          <h2>
+            Ainda tenho muitos capítulos para escrever.
+          </h2>
+
+          <p>
+            Meus objetivos são aprender, crescer e construir
+            um futuro que tenha a minha cara.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card reveal">
+            <span class="card-number">01 / APRENDER</span>
+            <h3>Descobrir coisas novas</h3>
+
+            <p>
+              Quero aprender novas habilidades, conhecer
+              diferentes áreas e continuar desenvolvendo
+              minha criatividade.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">02 / CONQUISTAR</span>
+            <h3>Realizar meus sonhos</h3>
+
+            <p>
+              Quero transformar minhas ideias em conquistas
+              e ter orgulho de cada passo que eu der.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">03 / EVOLUIR</span>
+            <h3>Ser alguém de quem me orgulhe</h3>
+
+            <p>
+              Quero crescer sem perder meus valores,
+              respeitar as pessoas e continuar sendo
+              verdadeiro comigo mesmo.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="quote reveal">
+
+          <blockquote>
+            "Não preciso ter tudo planejado.
+            Só preciso continuar acreditando
+            nos meus sonhos e fazendo minha parte."
+          </blockquote>
+
+          <p>
+            Uma frase que representa meu jeito de olhar para o futuro.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section" id="mensagem">
+
+      <div class="container">
+
+        <div class="contact-box reveal">
+
+          <div>
+            <span class="eyebrow">Obrigado pela visita</span>
+
+            <h2>Essa é só a primeira página.</h2>
+
+            <p>
+              Minha história continua sendo escrita.
+              O melhor ainda está por vir.
+            </p>
+          </div>
+
+          <a class="button primary" href="#inicio">
+            Voltar ao início ↑
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+
+      <p>
+        © <span id="year"></span>
+        <strong>Yuri</strong>
+      </p>
+
+      <p>Feito com carinho e um pouco de código.</p>
+
+    </div>
+  </footer>
+
+  <script>
+    // Atualiza o ano automaticamente.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Menu para celulares.
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "Fechar" : "Menu";
+    });
+
+    // Fecha o menu depois de escolher uma seção.
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "Menu";
+      });
+    });
+
+    // Animação dos elementos durante a rolagem.
+    const elements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      elements.forEach((element) => observer.observe(element));
+    } else {
+      elements.forEach((element) => {
+        element.classList.add("visible");
+      });
+    }
+  </script>
+
+</body>
+</html>
